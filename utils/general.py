@@ -468,8 +468,8 @@ def scale_coords(img1_shape, coords, img0_shape, ratio_pad=None):
 
     coords[:, [0, 2]] -= pad[0]  # x padding
     coords[:, [1, 3]] -= pad[1]  # y padding
-    coords[:, [0, 2]] /= gain[1]
-    coords[:, [1, 3]] /= gain[0]
+    coords[:, [0, 2]] /= gain if isinstance(gain, float) else gain[1]
+    coords[:, [1, 3]] /= gain if isinstance(gain, float) else  gain[0]
     clip_coords(coords, img0_shape)
     return coords
 
